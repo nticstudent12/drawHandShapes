@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shape Drawing Dataset Collector
 
-## Getting Started
+A simple web application for collecting hand-drawn geometric shapes for machine learning datasets.
 
-First, run the development server:
+## Features
 
+- Draw shapes on a 256×256 canvas
+- Select shape labels: circle, square, triangle
+- Submit drawings automatically saved to organized folders
+- Automatic dataset organization
+
+## Setup Instructions
+
+1. Install dependencies (if not already installed):
+```bash
+npm install
+# or
+pnpm install
+```
+
+2. Run the development server:
 ```bash
 npm run dev
 # or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Select a shape label from the dropdown (circle, square, or triangle)
+2. Draw the shape on the canvas using your mouse or touch input
+3. Click "Submit" to save your drawing
+4. The canvas will clear automatically after successful submission
+5. Use "Clear" to reset the canvas without submitting
 
-## Learn More
+## Dataset Structure
 
-To learn more about Next.js, take a look at the following resources:
+Submitted drawings are automatically saved to:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+dataset/
+├── circle/
+│   ├── circle_1737312625123.png
+│   └── ...
+├── square/
+│   ├── square_1737312630456.png
+│   └── ...
+└── triangle/
+    ├── triangle_1737312635789.png
+    └── ...
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Each image is 256×256 pixels with a white background and black strokes.
 
-## Deploy on Vercel
+## Technical Details
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Frontend**: React with Next.js, Canvas API for drawing
+- **Backend**: Next.js API Route (app/api/submit/route.ts)
+- **Image Format**: PNG (base64 encoded for transmission)
+- **File Storage**: Local filesystem with organized folder structure
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```py file="scripts/backend.py" isDeleted="true"
+...deleted...
